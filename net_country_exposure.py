@@ -188,13 +188,13 @@ def cal_other_q(val_d2):
 def cal_other_net(result_df, val_d3):
     other_val_q = cal_other_q(VAL_D2)
     if other_val_q == '':
-        other_row = {'Country_Name':'OTHER', 'Col_P': ''}
+        other_row = pd.DataFrame({'Country_Name':['OTHER'], 'Col_P': ['']})
     else:
         range_sum_p = result_df['Col_P'].sum()
         other_val_p = val_d3 - range_sum_p
         other_row = pd.DataFrame({'Country_Name':['OTHER'], 'Col_P': [other_val_p]})
-        result_df = pd.concat([result_df, other_row], ignore_index=True)
-        return result_df
+    result_df = pd.concat([result_df, other_row], ignore_index=True)
+    return result_df
 
 
 def cal_net_country_exposure(result_df):
